@@ -97,7 +97,7 @@ terraform init
 terraform apply -var-file=bentoctl.tfvars -auto-approve
 ```
 
-## Test
+## Testando a API
 
 Agora vamos testar a API usando a estrutura do fármaco Levodopa, usando no tratamento 
 da doença de Parkinson. Este fármaco precisa agir no sistema nervoso central, sendo
