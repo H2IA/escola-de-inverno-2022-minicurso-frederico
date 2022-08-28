@@ -19,10 +19,7 @@ build:
 	@bentoml build
 
 serve:
-	@bentoml serve bbb-model:latest --production
-
-container:
-	@bentoml containerize bbb-model:latest --platform=linux/amd64
+	@bentoml serve bbb-model:latest --port 8085
 
 deploy:
 	@bash scripts/deploy_to_gcp.sh

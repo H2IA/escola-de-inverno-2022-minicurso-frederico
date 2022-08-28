@@ -10,4 +10,12 @@ dependencies:
   - google-cloud-sdk
   - pip
   - pip:
-    - -r requirements.txt
+    - pandas
+    - numpy
+    - scikit-learn
+    - bentoml
+    - bentoctl
+    - imbalanced-learn
+    - plotly
+    - tqdm
+    - pydantic

@@ -18,7 +18,6 @@ def main():
     df_features.to_csv(arguments.output, index=False)
 
 def compute_features(df_raw:pd.DataFrame) -> pd.DataFrame:
-
     X = []
     y = []
 
@@ -30,9 +29,9 @@ def compute_features(df_raw:pd.DataFrame) -> pd.DataFrame:
 
     X = np.array(X)
     y = np.array(y)
-
     df_features = pd.DataFrame(X)
     df_features['label'] = y
+
     return df_features
 
 def smiles_to_morganfingerprints(smiles:str) -> np.array:

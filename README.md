@@ -63,34 +63,21 @@ with open(arguments.output, 'wb') as writer:
     print(f"Model tag: {saved_model}")
 ```
 
-## M
+## Rodando o modelo localmente
+
+```
+$ bentoml serve service:svc --reload
+```
 
 ## GCP Deployment
 
-### Authentication
-
 ```
 $ gcloud auth login
-```
-
-### Create project
-
-
-
-```
 $ gcloud projects create escola-de-inverno-2022-minicurso-frederico-test
-```
-
-### Select active project
-
-```
 $ gcloud config set project escola-de-inverno-2022-minicurso-frederico
-```
-
-### Push container do GCP
-
-```
-$ saved_path=$(bentoml get bbb_classifier:latest --print-location --quiet)
-$ cd $saved_path
-$ gcloud builds submit --tag gcr.io/irisclassifier-gcloud-run/iris-classifier
+$ bentoctl operator install google-cloud-run
+$ bentoctl init
+$ bentoctl build -b bbb-model:latest -f deployment_config.yaml
+$ terraform init
+$ terraform apply -var-file=bentoctl.tfvars -auto-approve
 ```

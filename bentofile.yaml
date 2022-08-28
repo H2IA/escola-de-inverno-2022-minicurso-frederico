@@ -4,20 +4,6 @@ labels:
    owner: fredericokremer
    stage: dev
 include:
-  - "*.py" 
+  - "*" 
 conda:
-  channels:
-    - conda-forge
-    - rdkit
-  dependencies:
-    - python=3.8
-    - jupyter
-    - rdkit
-    - pip
-    - pip:
-      - pandas
-      - numpy
-      - scikit-learn
-      - bentoml
-      - imbalanced-learn
-      - plotly
+    environment_yml: "./environment.yml"

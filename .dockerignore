@@ -1,6 +1,11 @@
 # data
 data/
 
+# configuration
+bentoctl.tfvars
+deployment_config.yaml
+main.tf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
