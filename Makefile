@@ -24,4 +24,7 @@ serve:
 deploy:
 	@bash scripts/deploy_to_gcp.sh
 
+test:
+	@bash scripts/test_deploy.sh
+
 all: download features train build container deploy

@@ -54,14 +54,19 @@ print(f"Model tag: {saved_model}")
 
 ## Rodando o modelo localmente
 
-## Empacotando o modelo com BentoML
+## Empacotando o modelo com BentoML e rodando localmente
 
 ```
-$ make build
-$ make serve
+$ make build serve
 ```
+
+A regra `build` executará o comando `bentoml build`, salvando a versão
+atual do modelo treinado. Já a `serve` irá iniciar um servidor local
+para disponibilizar o modelo em um API REST.
 
 ## Deployment
+
+**Nota:** Para enviar o modelo para o GCP é necessário ter o Terraform instalado. 
 
 ```
 $ bash scripts/deploy_to_gcp.sh
@@ -91,3 +96,6 @@ bentoctl build -b bbb-model:latest -f deployment_config.yaml
 terraform init
 terraform apply -var-file=bentoctl.tfvars -auto-approve
 ```
+
+## Test
+

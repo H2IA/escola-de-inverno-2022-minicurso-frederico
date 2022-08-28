@@ -9,6 +9,7 @@ dependencies:
   - rdkit=2022.03.4
   - google-cloud-sdk
   - pip
+  - jq
   - pip:
     - pandas
     - numpy
