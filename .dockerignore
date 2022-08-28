@@ -5,6 +5,8 @@ data/
 bentoctl.tfvars
 deployment_config.yaml
 main.tf
+.terraform/
+.terraform.lock.hcl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
