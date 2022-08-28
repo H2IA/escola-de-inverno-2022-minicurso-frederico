@@ -1,6 +1,6 @@
 # H2IA: Botando pra rodar
 
-Neste projeto utilizaremos dados do B3DB, um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *App Run*. 
+Neste projeto utilizaremos dados do [B3DB](https://github.com/theochem/B3DB), um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *App Run*. 
 
 ## Setup
 
