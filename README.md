@@ -1,6 +1,6 @@
 # H2IA: Botando pra rodar
 
-Neste projeto utilizaremos dados do [B3DB](https://github.com/theochem/B3DB), um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *App Run*. 
+Neste projeto utilizaremos dados do [B3DB](https://github.com/theochem/B3DB), um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *Cloud Run* e as ferramenta *BentoML* e *Terraform*. 
 
 ## Setup
 
@@ -98,4 +98,23 @@ terraform apply -var-file=bentoctl.tfvars -auto-approve
 ```
 
 ## Test
+
+Agora vamos testar a API usando a estrutura do fármaco Levodopa, usando no tratamento 
+da doença de Parkinson. Este fármaco precisa agir no sistema nervoso central, sendo
+assim necessária a sua passagem pela BBB.
+
+```
+$ molecule='N[C@@H](Cc1ccc(O)c(O)c1)C(=O)O' # SMILES do levodopa
+$ curl \
+    --header "Content-Type: application/json" \
+    --request POST \
+    --data "{\"smiles\": \"$molecule"}" \
+    -s
+```
+Resultado:
+
+```
+[1]
+```
+
 
