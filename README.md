@@ -1,17 +1,6 @@
 # H2IA: Botando pra rodar
 
-Neste projeto utilizaremos dados do B3DB, um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *App Run*. Para isso, utilizaremos as seguintes tecnologias:
-
-- Conda: gerenciamento de ambientes e dependências no projeto
-- Pandas: manipulação de dados tabulares
-- Numpy: manipulação de *arrays*
-- RDKit: manip
-- Scikit-Learn: treinamento de m
-- Jupyter: 
-- Potly: visualização de dados
-- Imbalanced-Learn: balanceamento de datasets
-- BentoML: 
-- Google Cloud Platform: plataforma para provicionamento do modelo
+Neste projeto utilizaremos dados do B3DB, um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *App Run*. 
 
 ## Setup
 
@@ -56,14 +45,22 @@ através do *BentoML* com o nome `bbb-model`.
 
 ```python
 with open(arguments.output, 'wb') as writer:
-        writer.write(pickle.dumps(model))
-    print(f"Model file: {arguments.output}")
+    writer.write(pickle.dumps(model))
+print(f"Model file: {arguments.output}")
 
-    saved_model = bentoml.sklearn.save_model('bbb-model', model)
-    print(f"Model tag: {saved_model}")
+saved_model = bentoml.sklearn.save_model('bbb-model', model)
+print(f"Model tag: {saved_model}")
 ```
 
-## M
+## Empacotando o modelo com BentoML
+
+```
+$ make build
+```
+
+```
+$ make container
+```
 
 ## GCP Deployment
 
@@ -75,8 +72,6 @@ $ gcloud auth login
 
 ### Create project
 
-
-
 ```
 $ gcloud projects create escola-de-inverno-2022-minicurso-frederico-test
 ```
@@ -87,10 +82,4 @@ $ gcloud projects create escola-de-inverno-2022-minicurso-frederico-test
 $ gcloud config set project escola-de-inverno-2022-minicurso-frederico
 ```
 
-### Push container do GCP
-
-```
-$ saved_path=$(bentoml get bbb_classifier:latest --print-location --quiet)
-$ cd $saved_path
-$ gcloud builds submit --tag gcr.io/irisclassifier-gcloud-run/iris-classifier
-```
+### Set
