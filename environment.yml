@@ -1,0 +1,13 @@
+name: escola-de-inverno-2022-minicurso-frederico
+channels:
+  - anaconda
+  - rdkit
+  - conda-forge
+dependencies:
+  - python=3.8
+  - jupyter
+  - rdkit=2022.03.4
+  - google-cloud-sdk
+  - pip
+  - pip:
+    - -r requirements.txt

@@ -1,0 +1,7 @@
+pandas
+numpy
+scikit-learn
+bentoml
+imbalanced-learn
+plotly
+tqdm
