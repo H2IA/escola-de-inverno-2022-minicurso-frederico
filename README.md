@@ -1,17 +1,6 @@
 # H2IA: Botando pra rodar
 
-Neste projeto utilizaremos dados do B3DB, um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *App Run*. Para isso, utilizaremos as seguintes tecnologias:
-
-- Conda: gerenciamento de ambientes e dependências no projeto
-- Pandas: manipulação de dados tabulares
-- Numpy: manipulação de *arrays*
-- RDKit: manip
-- Scikit-Learn: treinamento de m
-- Jupyter: 
-- Potly: visualização de dados
-- Imbalanced-Learn: balanceamento de datasets
-- BentoML: 
-- Google Cloud Platform: plataforma para provicionamento do modelo
+Neste projeto utilizaremos dados do [B3DB](https://github.com/theochem/B3DB), um banco de dados de moléculas com diferentes níveis de permeabilidade para a barreira cérebro-sangue (*blood-brain barrier*), para produzir um modelo preditivo capaz de estimar esta propriedade. Além disso, disponibilizaremos o modelo na forma de um *API REST* no *Google Cloud Platform* usando o serviço *App Run*. 
 
 ## Setup
 
@@ -56,28 +45,49 @@ através do *BentoML* com o nome `bbb-model`.
 
 ```python
 with open(arguments.output, 'wb') as writer:
-        writer.write(pickle.dumps(model))
-    print(f"Model file: {arguments.output}")
+    writer.write(pickle.dumps(model))
+print(f"Model file: {arguments.output}")
 
-    saved_model = bentoml.sklearn.save_model('bbb-model', model)
-    print(f"Model tag: {saved_model}")
+saved_model = bentoml.sklearn.save_model('bbb-model', model)
+print(f"Model tag: {saved_model}")
 ```
 
 ## Rodando o modelo localmente
 
-```
-$ bentoml serve service:svc --reload
-```
-
-## GCP Deployment
+## Empacotando o modelo com BentoML
 
 ```
-$ gcloud auth login
-$ gcloud projects create escola-de-inverno-2022-minicurso-frederico-test
-$ gcloud config set project escola-de-inverno-2022-minicurso-frederico
-$ bentoctl operator install google-cloud-run
-$ bentoctl init
-$ bentoctl build -b bbb-model:latest -f deployment_config.yaml
-$ terraform init
-$ terraform apply -var-file=bentoctl.tfvars -auto-approve
+$ make build
+$ make serve
+```
+
+## Deployment
+
+```
+$ bash scripts/deploy_to_gcp.sh
+```
+
+Este *script* executará os seguintes comandos:
+
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+# GCP configuration
+
+gcloud auth login
+gcloud projects create h2ia-2022-frederico || echo "Project already exists"
+gcloud config set project h2ia-2022-frederico
+
+# Terraform config generation
+
+bentoctl operator install google-cloud-run
+bentoctl init
+bentoctl build -b bbb-model:latest -f deployment_config.yaml
+
+# GCP deployment with terraform
+
+terraform init
+terraform apply -var-file=bentoctl.tfvars -auto-approve
 ```
